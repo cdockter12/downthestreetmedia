@@ -1,0 +1,17 @@
+{% extends 'DTSWebsite/base.html' %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Tell Us About Your New Listing!</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="form-group">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class='btn btn-primary'>
+        </form>
+    </div>
+</div>
+{% endblock %}

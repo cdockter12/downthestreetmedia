@@ -1,0 +1,37 @@
+{% extends "DTSWebsite/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Some Homes We've Shot in the Past...</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        {% for album in albums %}
+        <div class='col-lg-4 col-md-6'>
+            <a href="{% url 'album-detail' album.pk %}">
+                <img src="{{ album.thumb.url }}" alt="{{ album.title }}" class="img-thumbnail rounded" />
+            </a>
+            <figcaption class="figure-caption"><a href="{% url 'album-detail' album.pk %}">
+                    {{ album.title }}
+                </a></figcaption>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="pagination center">
+    <span class="step-links">
+        {% if albums.has_previous %}
+        <a href="?page={{ albums.previous_page_number }}" class="waves-effect waves-light btn btn-large">Previous</a>
+        {% endif %}
+
+        {% if albums.has_next %}
+        <a href="?page={{ albums.next_page_number }}" class="waves-effect waves-light btn btn-large">Next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}
